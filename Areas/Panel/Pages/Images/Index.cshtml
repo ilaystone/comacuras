@@ -1,0 +1,32 @@
+﻿@page
+@model ComaCuras.web.Areas.Panel.Pages.Images.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table table-responsive-md">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Picture.Data)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <div class="form-group">
+                    <img src="@Model.Picture.GetImageUrl()" class="img-fluid" />
+                </div>
+            </td>
+        </tr>
+
+    </tbody>
+</table>

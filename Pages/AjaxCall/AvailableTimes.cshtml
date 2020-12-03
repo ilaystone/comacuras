@@ -1,0 +1,11 @@
+﻿@page
+@model ComaCuras.web.Pages.AjaxCall.AvailableTimesModel
+
+@{
+    Layout = "";
+}
+
+
+<select class="form-control" id="AvailableTimes-picker" asp-items="Model.PossibleDates">
+    <option value="" selected>select an option</option>
+</select>

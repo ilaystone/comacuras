@@ -1,0 +1,118 @@
+﻿@page
+@model ComaCuras.web.Pages.Shops.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+@{
+    var prevDisabled = !Model.Shop.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.Shop.HasNextPage ? "disabled" : "";
+}
+
+@section styles {
+    <style>
+        .card-img-top {
+            width: 100%;
+            height: auto;
+            max-height: 200px;
+            object-fit: fill;
+        }
+
+        .card {
+            min-height: 350px;
+        }
+    </style>
+}
+
+@section scripts {
+    <script src="~/js/location.js"></script>
+}
+
+<div class="blurry-bg">
+    <form asp-page="./Index" method="get">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <a class="btn btn-outline-primary"
+                   asp-page="./index"
+                   asp-route-sortOrder="@Model.NameSort"
+                   asp-route-searchString="@Model.CurrentSearch">
+                    @Html.DisplayNameFor(model => model.Shop[0].Name)
+                </a>
+                <a class="btn btn-outline-primary disabled"
+                   id="user_local"
+                   asp-page="./index"
+                   asp-route-sortOrder="@Model.LocalSort"
+                   asp-route-searchString="@Model.CurrentSearch">
+                    Distance
+                </a>
+                <select class="form-control"
+                        asp-for="SelectedTag"
+                        asp-items="ViewBag.Cities"
+                        name="c">
+                    <option value="-1">Toutes</option>
+                </select>
+            </div>
+            <input type="text" class="form-control" placeholder="Search" name="SearchString" value="@Model.CurrentSearch">
+            <div class="input-group-append">
+                <button id="submitbtn" class="btn btn-secondary " type="submit">
+                    <i class="fas fa-search fa-flip-horizontal"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        @foreach (var item in Model.Shop)
+        {
+            <div class="col-sm-4">
+                <div class="card my-5 custom-card card-shopDisplay">
+                    <div class="card-header">
+                        <img alt="image for @item.Name" src="@item.GetImageUrl()" />
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Name</h5>
+                        <p class="card-text">
+                        </p>
+                    </div>
+                    <div class="custom-card-ft">
+                        <a class="btn3 viewShop-btn"
+                           asp-page="./details"
+                           asp-route-id="@item.Id">
+                            <span>View Shop</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <div class=" row text-center">
+                <div class="col-5">
+                    <a asp-page="./Index"
+                       asp-route-sortOrder="@Model.CurrentSort"
+                       asp-route-pageIndex="@(Model.Shop.PageIndex - 1)"
+                       asp-route-currentFilter="@Model.CurrentSearch"
+                       class="btn btn-primary btn-block @prevDisabled">
+                        Previous
+                    </a>
+                </div>
+                <div class="col-2"></div>
+                <div class="col-5">
+                    <a asp-page="./Index"
+                       asp-route-sortOrder="@Model.CurrentSort"
+                       asp-route-pageIndex="@(Model.Shop.PageIndex + 1)"
+                       asp-route-currentFilter="@Model.CurrentSearch"
+                       class="btn btn-primary btn-block @nextDisabled">
+                        Next
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+</div>

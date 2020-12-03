@@ -1,0 +1,98 @@
+﻿@page
+@model ComaCuras.web.Areas.Panel.Pages.Agents.IndexModel
+
+@{
+    ViewData["Title"] = "Agents";
+}
+
+<div class="blurry-bg">
+
+    <h2>Manager Panel</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-2">
+            <partial name="_ManagerNav" view-data='new ViewDataDictionary(this.ViewData)' />
+        </div>
+        <div class="col-md-10">
+            <p>
+                <a asp-page="Create">Create New</a>
+            </p>
+            <table class="table table-responsive-md">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Agent[0].Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Agent[0].SevicesList)
+                        </th>
+                        <th>
+                            Active ??
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Agent.Count(); i++)
+                    {
+                        <tr>
+                            <td>
+                                @if (Model.Agent[i].PictureId != 0)
+                                {
+                                    <a asp-area="panel" asp-page="/Images/Edit" asp-route-id="@Model.Agent[i].PictureId">
+                                        Edit img
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a class="text-danger" asp-area="panel" asp-page="/Images/Create" asp-route-o="agent" asp-route-id="@Model.Agent[i].Id">
+                                        Create img
+                                    </a>
+                                }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.Agent[i].Name)
+                            </td>
+                            <td>
+                                @foreach (var item in Model.Service[i])
+                                {
+                                    if (item.IsChecked)
+                                    {
+                                        <label>@item.Name</label>
+                                        <br />
+                                    }
+                                }
+                            </td>
+                            <td>
+                                @if (!Model.Agent[i].IsActive())
+                                {
+                                    if (string.IsNullOrEmpty(Model.Agent[i].SevicesList))
+                                    {
+                                        <label>Agent has no service</label> <br />
+                                    }
+                                    if (Model.Agent[i].PictureId == 0)
+                                    {
+                                        <label>Agent has no set Image</label> <br />
+                                    }
+                                    if (DateTime.Compare(Model.Agent[i].HolidayEndDate, DateTime.Now) > 0)
+                                    {
+                                        <label>Agent is in holiday</label>
+                                    }
+                                }
+                                else
+                                {
+                                    <label>Agent is Active</label>
+                                }
+                            </td>
+                            <td>
+                                <a asp-page="./Edit" asp-route-id="@Model.Agent[i].Id">Edit</a> |
+                                <a asp-page="./Delete" asp-route-id="@Model.Agent[i].Id">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

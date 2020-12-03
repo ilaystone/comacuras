@@ -1,0 +1,47 @@
+﻿@model ComaCuras.web.Areas.Panel.Pages.Admin.DetailsShopModel
+@{
+    Layout = "";
+}
+
+<br />
+<table class="table table-responsive-md">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Service[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Service[0].Cost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Service[0].Duration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Service[0].DiscountRatio)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Service)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cost)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Duration)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiscountRatio)
+                </td>
+                <td>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

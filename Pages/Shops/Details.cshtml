@@ -1,0 +1,63 @@
+﻿@page
+@model ComaCuras.web.Pages.Shops.DetailsModel
+
+@using Microsoft.AspNetCore.Identity
+@using ComaCuras.web.Data
+
+@inject SignInManager<ComaCuraswebUser> SignInManager
+@inject UserManager<ComaCuraswebUser> UserManager
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+@if (!string.IsNullOrEmpty(Model.Msg))
+{
+    <span><label>@Model.Msg</label></span>
+}
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <div class="details-box">
+            <h4 class="card-title text-center">
+                @Model.Shop.Name
+            </h4>
+            <img class="details-img" alt="image for @Model.Shop.Name" src="@Model.Shop.GetImageUrl()" />
+            <div class="card-body">
+                @Model.Shop.E_mail <br />
+                @Model.Shop.PhoneNumber <br />
+                @Model.Shop.Adress <br /> <br />
+                <partial name="ServicesTable" />
+            </div>
+            <div>
+                <div asp-validation-summary="All" class="text-danger"></div>
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    if (Model.Appointments.Count > 0)
+                    {
+                        <label>Your Appointments :</label><br />
+                        foreach (var item in Model.Appointments)
+                        {
+                            <label>@item.Service.Name</label>
+                            <label> | @item.Date.ToLongDateString()</label>
+                            <label> | @item.Start</label>
+                            <label> | to pay : @item.Service.Cost</label>
+                            <br />
+                        }
+                    }
+                }
+                <partial name="AppointmentModal" />
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+</div>
+@section scripts {
+    <script src="~/js/appointment.js"></script>
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/appointmentTicket.css" />
+}

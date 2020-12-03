@@ -1,0 +1,90 @@
+﻿@page
+@model ComaCuras.web.Pages.Appointments.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+@{
+    var AgentDisabled = Model.Appointment.Count() == 0;
+}
+
+<div class="blurry-bg">
+    <h1>My Appointments</h1>
+    <form method="post">
+        <div class="form-row">
+            <div class="form-group col-md-5">
+                <input class="form-control" asp-for="Query.Date" min="@DateTime.Now.Date.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="form-group col-md-5">
+                <select asp-for="Query.Agent" class="form-control" asp-items="ViewBag.Agents">
+                    <option value="-1">@(AgentDisabled ? "" : "toutes les agents")</option>
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <input type="submit" value="Filter" class="btn btn-primary" />
+            </div>
+        </div>
+    </form>
+    <table class="table table-responsive-md">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Appointment[0].UserMail)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Appointment[0].AgentNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Appointment[0].Start)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Appointment[0].End)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Appointment[0].Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Appointment[0].Service)
+                </th>
+                <th>
+                    shop name
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Appointment)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserMail)
+                    </td>
+                    <td>
+                        @item.GetAgentName()
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Start)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.End)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Service.Name)
+                    </td>
+                    <td>
+                        @item.GetShopName()
+                    </td>
+                    <td>
+                        <a asp-page="./Delete" asp-route-id="@item.Id">Cancel</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

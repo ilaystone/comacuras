@@ -1,0 +1,22 @@
+﻿[type=radio].select-agent {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+    /* IMAGE STYLES */
+    [type=radio].select-agent + img {
+        cursor: pointer;
+    }
+
+/* CHECKED STYLES */
+[type=radio]:checked.select-agent + img {
+    outline: 2px solid #0026ff;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 25vw;
+    object-fit: fill;
+}

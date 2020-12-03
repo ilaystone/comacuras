@@ -1,0 +1,53 @@
+﻿@page
+@model ComaCuras.web.Areas.Panel.Pages.Schedules.EditModel
+
+@using ComaCuras.web.Models
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+<h3>
+    @Utility.GetDay(Model.Schedule.Day)
+</h3>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Schedule.Id" />
+            <div class="form-group">
+                <label asp-for="Schedule.Start" class="control-label"></label>
+                <input asp-for="Schedule.Start" class="form-control" />
+                <span asp-validation-for="Schedule.Start" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Schedule.End" class="control-label"></label>
+                <input asp-for="Schedule.End" class="form-control" />
+                <span asp-validation-for="Schedule.End" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Schedule.Pstart" class="control-label"></label>
+                <input asp-for="Schedule.Pstart" class="form-control" />
+                <span asp-validation-for="Schedule.Pstart" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Schedule.Pend" class="control-label"></label>
+                <input asp-for="Schedule.Pend" class="form-control" />
+                <span asp-validation-for="Schedule.Pend" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

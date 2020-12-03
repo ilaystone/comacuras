@@ -1,0 +1,12 @@
+﻿@{ 
+
+}
+
+<ul class="nav nav-pills flex-column">
+    <li class="nav-item"><a class="nav-link @((string)ViewData["Title"] == "Details" ? "active" : "")" asp-area="Panel" asp-page="/Manager/Index">Details</a></li>
+    <li class="nav-item"><a class="nav-link @((string)ViewData["Title"] == "Services" ? "active" : "")" asp-area="Panel" asp-page="/services/Index">Services</a></li>
+    <li class="nav-item"><a class="nav-link @((string)ViewData["Title"] == "Agents" ? "active" : "")" asp-area="Panel" asp-page="/agents/Index">Agents</a></li>
+    <li class="nav-item"><a class="nav-link @((string)ViewData["Title"] == "Schedules" ? "active" : "")" asp-area="Panel" asp-page="/Schedules/Index">Schedule</a></li>
+    <li class="nav-item"><a class="nav-link @((string)ViewData["Title"] == "Gallery" ? "active" : "")" asp-area="Panel" asp-page="/Gallery/Index">Gallery</a></li>
+    <li class="nav-item"><a class="nav-link @((string)ViewData["Title"] == "Appointments" ? "active" : "")" asp-area="Panel" asp-page="/Appoint/Index">Appointments</a></li>
+</ul>           

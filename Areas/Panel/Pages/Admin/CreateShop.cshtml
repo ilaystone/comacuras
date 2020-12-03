@@ -1,0 +1,52 @@
+﻿@page
+@model ComaCuras.web.Areas.Panel.Pages.Admin.CreateShopModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Cree Shop</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Shop.Name" class="control-label"></label>
+                <input asp-for="Shop.Name" class="form-control" />
+                <span asp-validation-for="Shop.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shop.Location" class="control-label"></label>
+                <input asp-for="Shop.Location" class="form-control" />
+                <span asp-validation-for="Shop.Location" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shop.Adress" class="control-label"></label>
+                <input asp-for="Shop.Adress" class="form-control" />
+                <span asp-validation-for="Shop.Adress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shop.CityId" class="control-label"></label>
+                <select class="form-control" asp-for="Shop.CityId" asp-items="ViewBag.Cities"></select>
+                <span asp-validation-for="Shop.CityId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shop.E_mail" class="control-label"></label>
+                <input asp-for="Shop.E_mail" class="form-control" />
+                <span asp-validation-for="Shop.E_mail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="IndexShop">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

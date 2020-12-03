@@ -1,0 +1,13 @@
+﻿@page
+@model ComaCuras.web.Pages.AjaxCall.GetAgentsModel
+
+@{
+    Layout = "";
+}
+
+@foreach (var item in Model.Agents)
+{
+    <input type="radio" id="agent-picker" value="@item.Id" name="agent-picker"/>
+    <label>@item.Name</label>
+    <br />
+}

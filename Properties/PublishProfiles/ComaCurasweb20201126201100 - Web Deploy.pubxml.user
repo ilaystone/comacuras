@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAM7QTRG7UZ0SQ0CbW/bFm5AAAAAACAAAAAAAQZgAAAAEAACAAAABehLHmFzGovsBhun2gcJWmCtAWSCvIWDEUsFy7wVQUygAAAAAOgAAAAAIAACAAAAC+ePMuro7mlH22zyfFnkzWDHAx/VGP5BSBB/wAmgNtzIAAAABjgXbC+q2ORqSpDBSLA177TnlDnsXkZVzbVGcJ7SJWwd3m8P6NGPdJTGGeww4IOqanH4FrRTs1iXLAZkdcG8zuXdk3yPy2dJuoqLTBrufQ4o0GZP+UFOsJui5eg7LWPj7WIbXb6srtM1YR5xakF2F2AVe1FuqlF5lIK+nBXoJnfUAAAAAQDant72o0CFmMZMbWcMZfKzplhxjtmAEenH5Xn6w4jLyUCqkFGKZSrnnz693ILmEqgAp+hu1qcElO0zxWS/Nc</EncryptedPassword>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="ComaCuraswebContext">
+      <Value>Data Source=tcp:comacuraswebdbserver3.database.windows.net,1433%3bInitial Catalog=ComaCurasweb_db199%3bUser Id=comacuras%40comacuraswebdbserver3%3bPassword=hinata%40ANGEWO1</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <EFMigrations Include="ComaCuras.web.Data.ComaCuraswebContext">
+      <Value>Data Source=tcp:comacuraswebdbserver3.database.windows.net,1433%3bInitial Catalog=ComaCurasweb_db199%3bUser Id=comacuras%40comacuraswebdbserver3%3bPassword=hinata%40ANGEWO1</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>

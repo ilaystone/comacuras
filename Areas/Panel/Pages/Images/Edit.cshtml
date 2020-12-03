@@ -1,0 +1,37 @@
+﻿@page
+@model ComaCuras.web.Areas.Panel.Pages.Images.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Picture</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form enctype="multipart/form-data" method="post">
+            <label>
+                Vous pouvez utliser ce site pour reduire la talle de l'image
+                <a href="https://www.reduceimages.com/" target="_blank">link</a>
+            </label>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <img class="img-fluid" src="@Model.ImageData" alt="ImageNotFound" />
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageUpload.FormFile" class="control-label"></label>
+                <input type="file" asp-for="ImageUpload.FormFile" class="form-control" />
+                <span asp-validation-for="ImageUpload.FormFile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

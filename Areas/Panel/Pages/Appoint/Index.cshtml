@@ -1,0 +1,83 @@
+﻿@page
+@model ComaCuras.web.Areas.Panel.Pages.Appoint.IndexModel
+
+@{
+    ViewData["Title"] = "Appointments";
+}
+
+<div class="blurry-bg">
+    <h2>Manager Panel</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-2">
+            <partial name="_ManagerNav" />
+        </div>
+        <div class="col-md-10">
+            <form method="post">
+                <div class="form-row">
+                    <div class="form-group col-md-5">
+                        <input class="form-control" asp-for="Query.Date" />
+                    </div>
+                    <div class="form-group col-md-5">
+                        <select asp-for="Query.Agent" class="form-control" asp-items="ViewBag.Agents">
+                            <option>All Agents</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <input type="submit" value="Search" class="btn btn-primary btn-block" />
+                    </div>
+                </div>
+            </form>
+            <table class="table table-responsive-md">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Appointment[0].AgentNumber)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Appointment[0].Service.Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Appointment[0].Date)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Appointment[0].Start)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Appointment[0].End)
+                        </th>
+                        <th>
+                            Client
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Appointment)
+                    {
+                        <tr>
+                            <td>
+                                @item.GetAgentName()
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Service.Name)
+                            </td>
+                            <td>
+                                @item.Date.ToShortDateString()
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Start)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.End)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserMail)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,104 @@
+﻿@page
+@model ComaCuras.web.Areas.Panel.Pages.Manager.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="blurry-bg">
+    <h2>Manager Panel</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-2">
+            <partial name="_ManagerNav" view-data='new ViewDataDictionary(this.ViewData)' />
+        </div>
+        <div class="col-md-5">
+            <div>
+                <a asp-page="./Edit" asp-route-id="@Model.Shop.Id">Edit</a> <br />
+                @if (Model.Shop.Image != null)
+                {
+                    <a asp-area="panel" asp-page="/Images/Edit" asp-route-id="@Model.Shop.Id" asp-route-type="shop">
+                        Edit img
+                    </a>
+                }
+                else
+                {
+                    <a asp-area="panel" asp-page="/Images/Create" asp-route-id="@Model.Shop.Id" asp-route-type="shop">
+                        Create img
+                    </a>
+                }
+            </div>
+            <div>
+                <h4>Shop</h4>
+                <dl class="row">
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Shop.Name)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Shop.Name)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Shop.E_mail)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Shop.E_mail)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Shop.PhoneNumber)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Shop.PhoneNumber)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Shop.Adress)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Shop.Adress), @Html.DisplayFor(model => model.Shop.City.Name)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Shop.Location)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Shop.Location)
+                    </dd>
+                    <dt class="col-sm-4">
+                        subscription?
+                    </dt>
+                    @if (Model.Shop.SubscriptionEndDate.Date > DateTime.Now.Date)
+                    {
+                        <dd class="col-sm-8 text-success">subscribed : @Html.DisplayFor(model => model.Shop.SubscriptionEndDate)</dd>
+                    }
+                    else
+                    {
+                        <dd class="col-sm-8 text-danger">Client Not Subscribed</dd>
+                    }
+                    <dt class="col-sm-4">
+                        Shop status :
+                    </dt>
+                    <dd class="col-sm-8">
+                        @if (Model.Shop.HolidayEndDate.Date < DateTime.Now.Date &&
+                           Model.Shop.ServicesCheck() &&
+                           Model.Shop.AgentsCheck())
+                        {
+                            <label class="text-success">Status Green</label>
+                        }
+                        else
+                        {
+                            <label>
+                                @(Model.Shop.HolidayEndDate.Date < DateTime.Now.Date ? "Ouverte" : "En vacances")
+                            </label>
+                            <br />
+                            <label class="@(Model.Shop.ServicesCheck() ? "text-success" : "text-danger")">
+                                Services Check : @(Model.Shop.ServicesCheck() ? "Green" : "shop has no services !!")
+                            </label>
+                            <br />
+                            <label class="@(Model.Shop.AgentsCheck() ? "text-success" : "text-danger")">
+                                Agents Check: @(Model.Shop.AgentsCheck() ? "Green" : "you need at least 1 agent with set up img !!")
+                            </label>
+                        }
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using ComaCuras.web.Data
+
+@inject SignInManager<ComaCuraswebUser> SignInManager
+@inject UserManager<ComaCuraswebUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    @if (User.IsInRole("admin"))
+    {
+        <li class="nav-item">
+            <a class="nav-link nav-link-left" asp-area="Panel" asp-page="/Admin/IndexShop">Admin Panel</a>
+        </li>
+    }
+    @if (User.IsInRole("manager"))
+    {
+        <li class="nav-item">
+            <a class="nav-link nav-link-left" asp-area="Panel" asp-page="/Manager/Index">Manager Panel</a>
+        </li>
+    }
+}

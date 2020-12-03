@@ -1,0 +1,41 @@
+﻿@model ComaCuras.web.Areas.Panel.Pages.Admin.DetailsShopModel
+@{
+    Layout = "";
+}
+
+<br />
+<table class="table table-responsive-md">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Agent[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Agent[0].SevicesList)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.Agent.Count; i++)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Agent[i].Name)
+                </td>
+                <td>
+                    @foreach (var item in Model.ServiceInput[i])
+                    {
+                        if (item.IsChecked)
+                        {
+                            <label>@item.Name</label>
+                            <br />
+                        }
+                    }
+                </td>
+                <td>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

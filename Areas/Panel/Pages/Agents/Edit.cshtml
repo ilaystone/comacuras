@@ -1,0 +1,72 @@
+﻿@page
+@model ComaCuras.web.Areas.Panel.Pages.Agents.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Agent</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Agent.Id" />
+            <div class="form-group">
+                @if (Model.Agent.PictureId != 0)
+                {
+                    <a asp-area="panel" asp-page="/Images/Edit" asp-route-id="@Model.Agent.PictureId">
+                        
+                        <img class="img-fluid" src="@Model.Picture.GetImageUrl()" alt="AgentImage" />
+                    </a>
+                }
+                else
+                {
+                    <a asp-area="panel" asp-page="/Images/Create" asp-route-o="agent" asp-route-id="@Model.Agent.Id">
+                        Create
+                    </a>
+                }
+            </div>
+            <div class="form-group">
+                <label asp-for="Agent.Name" class="control-label"></label>
+                <input asp-for="Agent.Name" class="form-control" />
+                <span asp-validation-for="Agent.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Agent.HolidayEndDate" class="control-label"></label>
+                <input asp-for="Agent.HolidayEndDate" class="form-control" />
+                <span asp-validation-for="Agent.HolidayEndDate" class="text-danger"></span>
+            </div>
+            <div>
+                <h4>Services :</h4>
+                <dl class="row">
+                    @for (int i = 0; i < Model.Service.Count(); i++)
+                    {
+                        <dt class="col-sm-1">
+                            <input asp-for="Service[i].IsChecked" />
+                        </dt>
+                        <dd class="col-sm-11">
+                            @Model.Service[i].Name
+                        </dd>
+                        <dd>
+                            <input type="hidden" asp-for="Service[i].Id" />
+                        </dd>
+                    }
+                </dl>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

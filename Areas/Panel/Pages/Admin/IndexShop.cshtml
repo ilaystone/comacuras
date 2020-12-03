@@ -1,0 +1,74 @@
+﻿@page
+@model ComaCuras.web.Areas.Panel.Pages.Admin.IndexShopModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Manager Panel</h1>
+
+<p>
+    <a asp-page="/Cities/Index">Gerer les Ville</a> <br />
+    <a asp-page="CreateShop">Ajouter Shop</a> <br />
+</p>
+<form asp-page="./Index" method="get">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" name="SearchString" value="@Model.CurrentSearch" />
+        <div class="input-group-append">
+            <input type="submit" value="Search" class="btn btn-outline-primary" />
+        </div>
+    </div>
+</form>
+<table class="table table-responsive-md">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Shop[0].Name)
+            </th>
+            <th>
+                subscription
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Shop)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @(item.SubscriptionEndDate.Date > DateTime.Now.Date)
+                </td>
+                <td>
+                    <a asp-page="./EditShop" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./DetailsShop" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./DeleteShop" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@{
+    var prevDisabled = !Model.Shop.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.Shop.HasNextPage ? "disabled" : "";
+}
+
+<a asp-page="./IndexShop"
+   asp-route-pageIndex="@(Model.Shop.PageIndex - 1)"
+   asp-route-currentSearch="@Model.CurrentSearch"
+   class="btn btn-primary @prevDisabled">
+    Previous
+</a>
+<a asp-page="./IndexShop"
+   asp-route-pageIndex="@(Model.Shop.PageIndex + 1)"
+   asp-route-currentSearch="@Model.CurrentSearch"
+   class="btn btn-primary @nextDisabled">
+    Next
+</a>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/Administration.css" />
+}

@@ -1,0 +1,101 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+    Layout = "";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - booking beauty</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <script src="https://kit.fontawesome.com/9ab22b2640.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/home.css" />
+</head>
+<body>
+    <div class="welcome-bg">
+        <header>
+            <partial name="_NavBarPartial" />
+        </header>
+        <main role="main" class="pb-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <h1 class="welcome-text">BOOKING <br /> BEAUTY</h1>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div class="about-us-bg aboutus-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="justify-content-center">
+                        <h2 class="about-us-text">About-Us</h2>
+                        <div class="info">
+                            <p>
+                                <b>BOOKING BEAUTY</b> is an online booking system for salons.
+                                we collaborate with salons and barbers in your aeria
+                                to facilitate the process of booking an appointment
+                                at your favorite shop or even discover new one.
+                                and the process is simple
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="justify-content-center">
+                            <h2 class="process-text">Process</h2>
+                            <div class="row process-icons">
+                                <div class="col-md-4 justify-content-center">
+                                    <img src="~/img/postion.svg" class="rounded mx-auto d-block" />
+                                    <h4 class="text-center m-2">Trouver</h4>
+                                </div>
+                                <div class="col-md-4 justify-content-center">
+                                    <img src="~/img/time.svg" class="rounded mx-auto d-block" />
+                                    <h4 class="text-center m-2">Choisir</h4>
+                                </div>
+                                <div class="col-md-4 justify-content-center">
+                                    <img src="~/img/ticket.svg" class="rounded mx-auto d-block" />
+                                    <h4 class="text-center m-2">Finaliser</h4>  
+                                </div>
+                            </div>
+                            <div>
+                                <h2 class="about-us-text">
+                                    Social Media
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="border-top footer bg-footer text-muted">
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    &copy; 2020 - Booking Beauty - <a asp-area="" asp-page="/Privacy">Privacy</a>
+                </div>
+                <div class="col-6 text-right">
+                    Social Media
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>
+
+

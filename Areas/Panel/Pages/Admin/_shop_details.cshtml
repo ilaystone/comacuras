@@ -1,0 +1,46 @@
+﻿@model ComaCuras.web.Areas.Panel.Pages.Admin.DetailsShopModel
+
+@{
+    Layout = "";
+}
+
+<br />
+<dl class="row">
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Shop.Name)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Shop.Name)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Shop.Location)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Shop.Location)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Shop.Adress)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Shop.Adress)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Shop.City.Name)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Shop.City.Name)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Shop.E_mail)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Shop.E_mail)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Shop.PhoneNumber)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Shop.PhoneNumber)
+    </dd>
+</dl>
+<a asp-page="./EditShop" asp-route-id="@Model.Shop.Id">Edit</a>

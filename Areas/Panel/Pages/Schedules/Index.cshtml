@@ -1,0 +1,66 @@
+﻿@page
+@model ComaCuras.web.Areas.Panel.Pages.Schedules.IndexModel
+
+@{
+    ViewData["Title"] = "Schedules";
+}
+
+<div class="blurry-bg">
+    <h2>Manager Panel</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-2">
+            <partial name="_ManagerNav" view-data='new ViewDataDictionary(this.ViewData)' />
+        </div>
+        <div class="col-md-10">
+            <table class="table table-responsive-md">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Schedule[0].Day)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Schedule[0].Start)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Schedule[0].End)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Schedule[0].Pstart)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Schedule[0].Pend)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Schedule)
+                    {
+                        <tr>
+                            <td>
+                                @(ComaCuras.web.Models.Utility.GetDay(item.Day))
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Start)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.End)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Pstart)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Pend)
+                            </td>
+                            <td>
+                                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
