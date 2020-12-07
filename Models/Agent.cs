@@ -20,6 +20,9 @@ namespace ComaCuras.web.Models
         public byte[] Image { get; set; }
         public int ShopId { get; set; }
         public Shop Shop { get; set; }
+        public ICollection<AgentService> Services { get; set; }
+
+        /*Methodes*/
         public bool IsActive()
         {
             return DateTime.Compare(DateTime.Now, HolidayEndDate) > 0 &&

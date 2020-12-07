@@ -4,14 +4,16 @@ using ComaCuras.web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ComaCuras.web.Migrations
 {
     [DbContext(typeof(ComaCuraswebContext))]
-    partial class ComaCuraswebContextModelSnapshot : ModelSnapshot
+    [Migration("20201204104214_agent_contains_image_directly")]
+    partial class agent_contains_image_directly
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -119,21 +121,6 @@ namespace ComaCuras.web.Migrations
                     b.HasIndex("ShopId");
 
                     b.ToTable("Agent");
-                });
-
-            modelBuilder.Entity("ComaCuras.web.Models.AgentService", b =>
-                {
-                    b.Property<int>("AgentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ServiceId")
-                        .HasColumnType("int");
-
-                    b.HasKey("AgentId", "ServiceId");
-
-                    b.HasIndex("ServiceId");
-
-                    b.ToTable("AgentService");
                 });
 
             modelBuilder.Entity("ComaCuras.web.Models.Appointment", b =>
@@ -312,6 +299,9 @@ namespace ComaCuras.web.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("MyProperty")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -471,21 +461,6 @@ namespace ComaCuras.web.Migrations
                         .WithMany("Agent")
                         .HasForeignKey("ShopId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("ComaCuras.web.Models.AgentService", b =>
-                {
-                    b.HasOne("ComaCuras.web.Models.Agent", "Agent")
-                        .WithMany("Services")
-                        .HasForeignKey("AgentId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("ComaCuras.web.Models.Service", "Service")
-                        .WithMany("Agents")
-                        .HasForeignKey("ServiceId")
-                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 

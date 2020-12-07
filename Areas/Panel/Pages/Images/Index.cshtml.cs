@@ -19,14 +19,12 @@ namespace ComaCuras.web.Areas.Panel.Pages.Images
             _context = context;
         }
 
-        public Picture Picture { get;set; }
         public List<string> ImageUrl { get; set; } = new List<string>();
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public IActionResult OnGetAsync(int? id)
         {
             if (id == null)
                 return NotFound();
-            Picture = await _context.Picture.FindAsync(id);
             return Page();
         }
     }

@@ -9,6 +9,7 @@ namespace ComaCuras.web.Models
 {
     public class Shop
     {
+        // Data
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
@@ -30,14 +31,14 @@ namespace ComaCuras.web.Models
         public DateTime SubscriptionEndDate { get; set; } = DateTime.Now.AddDays(-1);
         public string Description { get; set; }
         public byte[] Image { get; set; }
-        public int MyProperty { get; set; }
+
+        // Foreign Keys
         public int CityId { get; set; }
         public City City { get; set; }
         public ICollection<Service> Services { get; set; }
         public ICollection<Agent> Agent { get; set; }
         public ICollection<Schedule> Schedule { get; set; }
         public ICollection<Rate> Rates { get; set; }
-
         private readonly ComaCuraswebContext _context;
         public Shop(ComaCuraswebContext context)
         {
@@ -46,6 +47,7 @@ namespace ComaCuras.web.Models
 
         public Shop() { }
 
+        // Methodes
         public string GetImageUrl()
         {
             return($"data:image/jpg;base64, {Convert.ToBase64String(Image)}");

@@ -38,18 +38,6 @@
                     {
                         <tr>
                             <td>
-                                @if (Model.Agent[i].PictureId != 0)
-                                {
-                                    <a asp-area="panel" asp-page="/Images/Edit" asp-route-id="@Model.Agent[i].PictureId">
-                                        Edit img
-                                    </a>
-                                }
-                                else
-                                {
-                                    <a class="text-danger" asp-area="panel" asp-page="/Images/Create" asp-route-o="agent" asp-route-id="@Model.Agent[i].Id">
-                                        Create img
-                                    </a>
-                                }
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => Model.Agent[i].Name)
@@ -71,10 +59,10 @@
                                     {
                                         <label>Agent has no service</label> <br />
                                     }
-                                    if (Model.Agent[i].PictureId == 0)
+                                    @*if (Model.Agent[i].PictureId == 0)
                                     {
                                         <label>Agent has no set Image</label> <br />
-                                    }
+                                    }*@
                                     if (DateTime.Compare(Model.Agent[i].HolidayEndDate, DateTime.Now) > 0)
                                     {
                                         <label>Agent is in holiday</label>

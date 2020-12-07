@@ -50,13 +50,7 @@ namespace ComaCuras.web.Areas.Panel.Pages.Agents
 
             if (Agent != null)
             {
-                var picture = await _context.Picture.Where(p => p.Id == Agent.PictureId).FirstOrDefaultAsync();
-                if (picture != null)
-                {
-                    _context.Picture.Remove(picture);
-                }
-                _context.Agent.Remove(Agent);
-                await _context.SaveChangesAsync();
+              
             }
 
             return RedirectToPage("./Index");

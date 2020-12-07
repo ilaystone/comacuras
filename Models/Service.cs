@@ -10,7 +10,7 @@ namespace ComaCuras.web.Models
     {
         public int Id { get; set; }
         [Required]
-        [RegularExpression(@"[A-Z][a-zA-Z0-9]+",
+        [RegularExpression(@"[A-Z][a-zA-Z0-9\s]+",
                 ErrorMessage = "n\'alphanumerique et capitalise")]
         public string Name { get; set; }
         [Required]
@@ -32,6 +32,9 @@ namespace ComaCuras.web.Models
         public int ShopId { get; set; }
         public Shop Shop { get; set; }
         public ICollection<Appointment> Appointments { get; set; }
+        public ICollection<AgentService> Agents { get; set; }
+
+        /*Methodes*/
         public bool HasDiscount() => DiscountRatio > 0;
     }
 }

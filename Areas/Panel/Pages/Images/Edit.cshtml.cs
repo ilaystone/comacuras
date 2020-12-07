@@ -96,14 +96,7 @@ namespace ComaCuras.web.Areas.Panel.Pages.Images
                     }
                     catch (DbUpdateConcurrencyException)
                     {
-                        if (!PictureExists(Picture.Id))
-                        {
-                            return NotFound();
-                        }
-                        else
-                        {
-                            throw;
-                        }
+
                     }
 
                 }
@@ -117,10 +110,10 @@ namespace ComaCuras.web.Areas.Panel.Pages.Images
             return Redirect("/Panel/Manager/Details");
         }
 
-        private bool PictureExists(int id)
-        {
-            return _context.Picture.Any(e => e.Id == id);
-        }
+        //private bool PictureExists(int id)
+        //{
+        //    return _context.Picture.Any(e => e.Id == id);
+        //}
         private bool VerifyFile()
         {
             Dictionary<string, List<byte[]>> fileSignature =

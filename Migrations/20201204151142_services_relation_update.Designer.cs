@@ -4,14 +4,16 @@ using ComaCuras.web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ComaCuras.web.Migrations
 {
     [DbContext(typeof(ComaCuraswebContext))]
-    partial class ComaCuraswebContextModelSnapshot : ModelSnapshot
+    [Migration("20201204151142_services_relation_update")]
+    partial class services_relation_update
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

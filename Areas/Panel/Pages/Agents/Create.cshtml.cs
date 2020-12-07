@@ -27,11 +27,10 @@ namespace ComaCuras.web.Areas.Panel.Pages.Agents
             _userManager = userManager;
         }
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGet()
         {
-            int v = _context.Shop.Where(s => s.E_mail == _userManager.GetUserName(User)).Select(s => s.Id).FirstOrDefault();
-            var service = _context.Service.Where(s => s.ShopId == v).ToList();
-            Service = InputServiceModel.ServiceToInputModel(service);
+            var shop = await _context.Shop.Where(s => s.E_mail == _userManager.GetUserName(User)).Include(s => s.Services).FirstOrDefaultAsync();
+            Service = InputServiceModel.ServiceToInputModel(shop.Services.ToList());
             return Page();
         }
 

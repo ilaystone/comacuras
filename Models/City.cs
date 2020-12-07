@@ -10,7 +10,7 @@ namespace ComaCuras.web.Models
     {
         public int Id { get; set; }
         [Required]
-        [RegularExpression(@"[a-zA-Z-]*",
+        [RegularExpression(@"[a-zA-Z-\s]*",
                     ErrorMessage = "n'autorize que alphabet et \'-\'")]
         public string Name { get; set; }
 

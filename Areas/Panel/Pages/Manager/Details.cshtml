@@ -15,7 +15,7 @@
         <div class="col-md-5">
             <div>
                 <a asp-page="./Edit" asp-route-id="@Model.Shop.Id">Edit</a> <br />
-                @if (Model.Shop.Image != null)
+                @if (Model.Shop.Image != null )
                 {
                     <a asp-area="panel" asp-page="/Images/Edit" asp-route-id="@Model.Shop.Id" asp-route-type="shop">
                         Edit img

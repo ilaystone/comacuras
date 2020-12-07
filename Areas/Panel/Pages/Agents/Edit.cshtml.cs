@@ -29,40 +29,6 @@ namespace ComaCuras.web.Areas.Panel.Pages.Agents
 
         [BindProperty]
         public Agent Agent { get; set; }
-        [BindProperty]
-        public List<InputServiceModel> Service { get; set; }
-        public Picture Picture { get; set; }
-        public class InputServiceModel
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public bool IsChecked { get; set; } = false;
-
-            public static List<InputServiceModel> ServiceToInputModel(List<Service> service, string chkLst)
-            {
-                List<InputServiceModel> res = new List<InputServiceModel>();
-
-                foreach (var s in service)
-                {
-                    res.Add(new InputServiceModel { Id = s.Id, Name = s.Name, IsChecked = (chkLst.Contains(s.Id + ":")) });
-                }
-
-                return res;
-            }
-
-            public static string ServiceListToString(List<InputServiceModel> lst)
-            {
-                string res = "";
-
-                foreach (var item in lst)
-                {
-                    if (item.IsChecked)
-                        res += string.Format("{0}:", item.Id);
-                }
-
-                return res;
-            }
-        }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -79,11 +45,6 @@ namespace ComaCuras.web.Areas.Panel.Pages.Agents
                 return NotFound();
             }
 
-            Picture = await _context.Picture.FindAsync(Agent.PictureId);
-
-            int v = _context.Shop.Where(s => s.E_mail == _userManager.GetUserName(User)).Select(s => s.Id).FirstOrDefault();
-            var service = _context.Service.Where(s => s.ShopId == v).ToList();
-            Service = InputServiceModel.ServiceToInputModel(service, Agent.SevicesList);
             return Page();
         }
 
@@ -104,7 +65,6 @@ namespace ComaCuras.web.Areas.Panel.Pages.Agents
             if (agent == null)
                 return NotFound();
 
-            agent.SevicesList = InputServiceModel.ServiceListToString(Service);
             agent.Name = Agent.Name;
             agent.HolidayEndDate = Agent.HolidayEndDate;
 

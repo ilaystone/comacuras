@@ -8,9 +8,54 @@
 
 <h2>Liste des villes</h2>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
+<!-- Button trigger modal -->
+<div class="row">
+    <div class="col-2">
+        <button type="button" class="btn btn-outline-primary btn-block" data-toggle="modal" data-target="#AjouterCity">
+            <div class="row">
+                <div class="col-4 text-left">
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="col-8">
+                    Ajouter
+                </div>
+            </div>
+        </button>
+    </div>
+</div>
+<br />
+<!-- Modal For Add -->
+<div class="modal fade" id="AjouterCity" tabindex="-1" role="dialog" aria-labelledby="AjouterCityModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="post" asp-page-handler="Create">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="AjouterCityModal">Ajouter Ville</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="CreateCity.Name" class="control-label"></label>
+                                <input asp-for="CreateCity.Name" class="form-control" />
+                                <span asp-validation-for="CreateCity.Name" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <table class="table">
     <thead>
         <tr>
@@ -35,6 +80,27 @@
         }
     </tbody>
 </table>
+
+<!-- Modal For Delete -->
+<div class="modal fade" id="AjouterCity" tabindex="-1" role="dialog" aria-labelledby="AjouterCityModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="AjouterCityModal">Ajouter Ville</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</div>
 
 @{
     var prevDisabled = !Model.City.HasPreviousPage ? "disabled" : "";

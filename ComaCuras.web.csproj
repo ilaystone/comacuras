@@ -15,6 +15,14 @@
   <ItemGroup>
     <Compile Include="Migrations\20201201095248_init_and_changed_images_handeling_ShopCreation.cs" />
     <Compile Include="Migrations\20201201095248_init_and_changed_images_handeling_ShopCreation.Designer.cs" />
+    <Compile Include="Migrations\20201204104214_agent_contains_image_directly.cs" />
+    <Compile Include="Migrations\20201204104214_agent_contains_image_directly.Designer.cs" />
+    <Compile Include="Migrations\20201204125933_agent_service_db.cs" />
+    <Compile Include="Migrations\20201204125933_agent_service_db.Designer.cs" />
+    <Compile Include="Migrations\20201204132019_shop_relations_config.cs" />
+    <Compile Include="Migrations\20201204132019_shop_relations_config.Designer.cs" />
+    <Compile Include="Migrations\20201204151142_services_relation_update.cs" />
+    <Compile Include="Migrations\20201204151142_services_relation_update.Designer.cs" />
     <Compile Include="Migrations\ComaCuraswebContextModelSnapshot.cs" />
   </ItemGroup>
 

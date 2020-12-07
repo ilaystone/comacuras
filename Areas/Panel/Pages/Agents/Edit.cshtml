@@ -15,19 +15,6 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Agent.Id" />
             <div class="form-group">
-                @if (Model.Agent.PictureId != 0)
-                {
-                    <a asp-area="panel" asp-page="/Images/Edit" asp-route-id="@Model.Agent.PictureId">
-                        
-                        <img class="img-fluid" src="@Model.Picture.GetImageUrl()" alt="AgentImage" />
-                    </a>
-                }
-                else
-                {
-                    <a asp-area="panel" asp-page="/Images/Create" asp-route-o="agent" asp-route-id="@Model.Agent.Id">
-                        Create
-                    </a>
-                }
             </div>
             <div class="form-group">
                 <label asp-for="Agent.Name" class="control-label"></label>
@@ -41,7 +28,7 @@
             </div>
             <div>
                 <h4>Services :</h4>
-                <dl class="row">
+                @*<dl class="row">
                     @for (int i = 0; i < Model.Service.Count(); i++)
                     {
                         <dt class="col-sm-1">
@@ -54,7 +41,7 @@
                             <input type="hidden" asp-for="Service[i].Id" />
                         </dd>
                     }
-                </dl>
+                </dl>*@
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

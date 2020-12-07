@@ -19,7 +19,11 @@ namespace ComaCuras.web.Areas.Panel.Pages.Cities
             _context = context;
         }
 
+        [BindProperty]
         public PaginatedList<City> City { get;set; }
+
+        [BindProperty]
+        public City CreateCity { get; set; }
 
         public async Task OnGetAsync(int? pageIndex)
         {
@@ -28,6 +32,26 @@ namespace ComaCuras.web.Areas.Panel.Pages.Cities
             int pageSize = 10;
             City = await PaginatedList<City>.CreateAsync(
                 cityIQ.AsNoTracking(), pageIndex ?? 1, pageSize);
+        }
+
+        public async Task<IActionResult> OnPostCreateAsync(int? pageIndex)
+        {
+            if (ModelState.IsValid)
+            {
+                if (!CityExists(CreateCity.Name.ToUpper()))
+                {
+                    CreateCity.Name = CreateCity.Name.ToUpper();
+                    _context.Cities.Add(CreateCity);
+                    await _context.SaveChangesAsync();
+                }
+            }
+
+            return Redirect("/Panel/Cities/Index");
+        }
+
+        bool CityExists(string city)
+        {
+            return _context.Cities.Any(c => c.Name == city);
         }
     }
 }
